@@ -1,645 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Spin & Win - Claim Your Reward</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naija Airtime Promo — Claim Your Free Airtime Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1B1F;
+    --cream:#FFF8E7;
+    --sun:#FFC93C;
+    --green:#0A7B3E;
+    --red:#E63946;
+    --purple:#6C3FC5;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Sora',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    line-height:1.05;
+  }
+  .mono{font-family:'Space Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:600px;margin:0 auto;padding:0 20px;}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(145deg, #ff7e5e 0%, #feb47b 30%, #ff6a4b 70%, #ffcc33 100%);
-      min-height: 100vh;
-      padding: 20px 16px 40px;
-      animation: gradientFlow 8s ease infinite;
-      background-size: 200% 200%;
-    }
+  /* ---- TOPBAR ---- */
+  .topbar{
+    background:var(--green);
+    padding:10px 20px;
+    text-align:center;
+    border-bottom:3px solid var(--sun);
+  }
+  .topbar p{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--cream);
+  }
+  .topbar span{color:var(--sun);}
 
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  /* ---- FLAG STRIPE ---- */
+  .flag-stripe{
+    display:flex;
+    height:8px;
+  }
+  .flag-stripe div{flex:1;}
+  .flag-stripe .g{background:var(--green);}
+  .flag-stripe .w{background:#fff;}
 
-    /* main container */
-    .container {
-      max-width: 550px;
-      margin: 0 auto;
-      position: relative;
-    }
+  /* ---- HERO ---- */
+  .hero{
+    background:linear-gradient(160deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
+    padding:40px 20px 0;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    border-bottom:4px solid var(--sun);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-80px;left:50%;
+    transform:translateX(-50%);
+    width:500px;height:500px;
+    background:radial-gradient(circle, rgba(255,201,60,0.12) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    background:var(--red);
+    color:#fff;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:8px 16px;
+    border-radius:999px;
+    margin-bottom:22px;
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(230,57,70,0.5);}
+    50%{box-shadow:0 0 0 10px rgba(230,57,70,0);}
+  }
+  .hero h1{
+    font-size:clamp(44px,11vw,72px);
+    color:var(--sun);
+    margin-bottom:6px;
+  }
+  .hero h1 span{color:#fff;}
+  .hero .sub{
+    font-size:17px;
+    opacity:0.85;
+    max-width:38ch;
+    margin:0 auto 28px;
+    font-weight:500;
+  }
 
-    /* cards & glassmorphism */
-    .card, .spin-card, .trust-card, .step-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(2px);
-      border-radius: 48px;
-      padding: 24px 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.5);
-      transition: all 0.25s ease;
-    }
+  /* ---- RECHARGE CARD ---- */
+  .card-wrap{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 0 3px var(--sun);
+    margin-bottom:0;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .card-header{
+    background:var(--ink);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 20px;
+  }
+  .card-header .brand-name{
+    font-family:'Anton',sans-serif;
+    font-size:18px;
+    color:var(--sun);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .card-header .mono{
+    font-size:11px;
+    color:var(--cream);
+    opacity:0.6;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+  }
+  /* Nigeria flag inside card */
+  .card-flag{height:5px;display:flex;}
+  .card-flag .g{flex:1;background:var(--green);}
+  .card-flag .w{flex:1;background:#eee;}
 
-    /* hero / brand section */
-    .brand-logos {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      align-items: center;
-      margin: 15px 0 10px;
-      flex-wrap: wrap;
-    }
-    .logo-item {
-      background: white;
-      padding: 8px 18px;
-      border-radius: 60px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-      font-weight: 700;
-    }
-    .logo-item img {
-      height: 28px;
-      width: auto;
-      object-fit: contain;
-    }
-    .logo-text {
-      font-size: 0.9rem;
-      color: #222;
-    }
+  /* Scratch panel */
+  .scratch{
+    margin:20px;
+    border-radius:12px;
+    padding:28px 20px;
+    text-align:center;
+    background:
+      repeating-linear-gradient(135deg,rgba(255,255,255,0.2) 0 6px,transparent 6px 12px),
+      linear-gradient(135deg,#c8cdd4,#9aa3ad 40%,#c8cdd4 60%,#8b94a0);
+    border:2px solid var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  .scratch::after{
+    content:"SCRATCH";
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%) rotate(-20deg);
+    font-family:'Anton',sans-serif;
+    font-size:80px;
+    color:rgba(0,0,0,0.04);
+    letter-spacing:4px;
+    pointer-events:none;
+  }
+  .scratch .s-label{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    opacity:0.7;
+    margin-bottom:8px;
+  }
+  .scratch .amount{
+    font-family:'Anton',sans-serif;
+    font-size:72px;
+    color:var(--green);
+    line-height:1;
+    text-shadow:2px 2px 0 rgba(0,0,0,0.15);
+  }
+  .scratch .amount sup{font-size:32px;vertical-align:top;margin-top:14px;display:inline-block;}
+  .scratch .airtime-label{
+    font-family:'Space Mono',monospace;
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-top:6px;
+    color:var(--ink);
+  }
+  .scratch .networks{
+    font-size:13px;
+    opacity:0.65;
+    margin-top:8px;
+  }
 
-    .glow-text {
-      font-size: 3.2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFD166, #FF4500, #FFB347);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(255,200,0,0.5);
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
+  .card-body{padding:4px 20px 22px;}
+  .card-body ul{
+    list-style:none;
+    margin-bottom:18px;
+  }
+  .card-body li{
+    font-size:14.5px;
+    padding:8px 0;
+    border-bottom:1px dashed rgba(27,27,31,0.12);
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .card-body li:last-child{border-bottom:none;}
+  .card-body li::before{
+    content:"✅";
+    flex-shrink:0;
+    font-size:14px;
+  }
 
-    .subhead {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1f2a3e;
-      background: rgba(255,255,200,0.7);
-      display: inline-block;
-      padding: 6px 18px;
-      border-radius: 60px;
-      backdrop-filter: blur(4px);
-    }
+  /* CTA */
+  .cta-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:var(--red);
+    color:#fff;
+    font-family:'Anton',sans-serif;
+    font-size:22px;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    padding:20px;
+    border-radius:12px;
+    border:3px solid var(--ink);
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .15s, box-shadow .15s;
+    cursor:pointer;
+    text-decoration:none;
+    width:100%;
+  }
+  .cta-btn:hover{
+    transform:translate(2px,2px);
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .card-footer-note{
+    font-size:12px;
+    text-align:center;
+    opacity:0.5;
+    padding:12px 20px 18px;
+    font-family:'Space Mono',monospace;
+  }
 
-    /* SPIN WHEEL custom */
-    .wheel-wrapper {
-      display: flex;
-      justify-content: center;
-      margin: 15px 0 25px;
-    }
-    canvas {
-      max-width: 280px;
-      width: 100%;
-      height: auto;
-      background: #fff0e0;
-      border-radius: 50%;
-      box-shadow: 0 20px 30px -5px rgba(0,0,0,0.3), 0 0 0 8px rgba(255,215,0,0.5);
-      transition: transform 0.2s;
-    }
-    .center-text {
-      text-align: center;
-      margin-top: -45px;
-      position: relative;
-      pointer-events: none;
-      z-index: 2;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: white;
-      text-shadow: 0 2px 5px black;
-    }
-    .btn-spin {
-      background: linear-gradient(95deg, #ffb347, #ff6b35);
-      border: none;
-      padding: 16px 32px;
-      font-size: 1.7rem;
-      font-weight: 800;
-      border-radius: 60px;
-      color: white;
-      width: 80%;
-      margin: 20px auto 0;
-      display: block;
-      cursor: pointer;
-      box-shadow: 0 12px 25px -5px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.6);
-      transition: all 0.1s linear;
-      letter-spacing: 1px;
-    }
-    .btn-spin:active {
-      transform: scale(0.97);
-      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-    }
+  /* ---- URGENCY BAR ---- */
+  .urgency{
+    background:var(--red);
+    text-align:center;
+    padding:14px 20px;
+    border-top:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);
+  }
+  .urgency p{
+    font-family:'Space Mono',monospace;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .urgency .counter{
+    font-family:'Anton',sans-serif;
+    font-size:28px;
+    color:var(--sun);
+    display:block;
+    margin-top:2px;
+  }
 
-    /* popup modal */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.2s;
-    }
-    .popup-container {
-      background: white;
-      border-radius: 56px;
-      max-width: 85%;
-      width: 340px;
-      text-align: center;
-      padding: 28px 22px;
-      box-shadow: 0 30px 40px rgba(0,0,0,0.4);
-      animation: popupZoom 0.2s ease;
-    }
-    @keyframes popupZoom {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .popup-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 24px;
-    }
-    .popup-btn {
-      background: #ff7b2c;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 40px;
-      font-weight: 800;
-      color: white;
-      cursor: pointer;
-      font-size: 1rem;
-      flex: 1;
-      max-width: 110px;
-    }
-    .popup-btn.no {
-      background: #6c757d;
-    }
-    .info-text {
-      background: #f1f3f5;
-      padding: 12px;
-      border-radius: 32px;
-      margin: 15px 0;
-      font-size: 0.8rem;
-      font-family: monospace;
-    }
+  /* ---- MARQUEE ---- */
+  .marquee{
+    background:var(--sun);
+    overflow:hidden;
+    white-space:nowrap;
+    border-top:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);
+  }
+  .marquee-track{
+    display:inline-block;
+    padding:11px 0;
+    animation:scroll 22s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-right:40px;
+  }
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-    /* second step (hidden) */
-    .step-two-section {
-      display: none;
-      animation: fadeSlide 0.5s ease;
-    }
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .final-cta {
-      background: linear-gradient(95deg, #28a745, #20c997);
-      font-size: 1.7rem;
-      padding: 18px;
-      width: 100%;
-      font-weight: 800;
-    }
-    .reward-badge {
-      background: gold;
-      display: inline-block;
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-weight: bold;
-      margin: 12px 0;
-    }
+  /* ---- HOW IT WORKS ---- */
+  .how{
+    padding:50px 20px;
+    background:linear-gradient(180deg,var(--ink) 0%,#1a1a2e 100%);
+  }
+  .section-label{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:0.5;
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .how h2{
+    font-size:clamp(28px,6vw,40px);
+    text-align:center;
+    color:var(--sun);
+    margin-bottom:32px;
+  }
+  .steps-grid{
+    display:grid;
+    gap:16px;
+    max-width:500px;
+    margin:0 auto;
+  }
+  .step-card{
+    background:rgba(255,255,255,0.05);
+    border:2px solid rgba(255,201,60,0.25);
+    border-radius:14px;
+    padding:20px 22px;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+  }
+  .step-num{
+    font-family:'Anton',sans-serif;
+    font-size:38px;
+    color:var(--sun);
+    line-height:1;
+    flex-shrink:0;
+  }
+  .step-card h3{
+    font-size:17px;
+    color:#fff;
+    margin-bottom:4px;
+    text-transform:none;
+  }
+  .step-card p{font-size:14px;opacity:0.7;margin:0;}
 
-    /* comments section */
-    .comment-item {
-      background: #fef9e8;
-      border-radius: 32px;
-      padding: 14px 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .avatar {
-      background: #ffbe76;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.4rem;
-    }
-    .comment-text {
-      flex:1;
-      font-weight: 500;
-    }
-    .comment-time {
-      font-size: 0.7rem;
-      color: gray;
-    }
-    textarea {
-      width: 100%;
-      border-radius: 28px;
-      border: 1px solid #ffbe76;
-      padding: 12px 18px;
-      font-family: inherit;
-      margin: 12px 0 6px;
-      resize: vertical;
-    }
-    .add-comment-btn {
-      background: #ffa559;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 60px;
-      font-weight: bold;
-      color: white;
-      margin-top: 5px;
-    }
-    .disclaimer {
-      font-size: 0.7rem;
-      text-align: center;
-      color: #2c2c2c;
-      background: rgba(255,255,200,0.8);
-      border-radius: 60px;
-      padding: 10px;
-      margin-top: 18px;
-    }
+  /* ---- BENEFITS ---- */
+  .benefits{
+    padding:50px 20px;
+    background:var(--green);
+  }
+  .benefits h2{
+    font-size:clamp(26px,6vw,38px);
+    text-align:center;
+    margin-bottom:28px;
+    color:var(--cream);
+  }
+  .benefit-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;
+    max-width:560px;
+    margin:0 auto;
+  }
+  .benefit-card{
+    background:rgba(255,255,255,0.12);
+    border:2px solid rgba(255,255,255,0.2);
+    border-radius:14px;
+    padding:22px 18px;
+    text-align:center;
+  }
+  .benefit-card .icon{font-size:36px;margin-bottom:10px;display:block;}
+  .benefit-card h3{font-size:17px;color:#fff;margin-bottom:6px;text-transform:none;}
+  .benefit-card p{font-size:13.5px;opacity:0.8;margin:0;}
 
-    button {
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    .hide {
-      display: none;
-    }
-    .show {
-      display: block;
-    }
-    h1 {
-      font-size: 3rem;
-      line-height: 1.2;
-    }
-    hr {
-      margin: 10px 0;
-    }
-  </style>
+  /* ---- NETWORKS ---- */
+  .networks{
+    padding:40px 20px;
+    background:var(--ink);
+    text-align:center;
+    border-top:4px solid var(--sun);
+  }
+  .networks h2{
+    font-size:clamp(22px,5vw,32px);
+    color:var(--cream);
+    margin-bottom:24px;
+  }
+  .net-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    margin-bottom:36px;
+  }
+  .net-badge{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:15px;
+    padding:14px 22px;
+    border-radius:10px;
+    border:2.5px solid var(--sun);
+    color:var(--sun);
+    letter-spacing:1px;
+  }
+  .bottom-cta-wrap{
+    max-width:420px;
+    margin:0 auto;
+  }
+  .bottom-cta{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:var(--sun);
+    color:var(--ink);
+    font-family:'Anton',sans-serif;
+    font-size:22px;
+    text-transform:uppercase;
+    padding:22px;
+    border-radius:14px;
+    border:3px solid var(--cream);
+    box-shadow:5px 5px 0 var(--sun);
+    text-decoration:none;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .bottom-cta:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--sun);}
+
+  /* ---- TERMS ---- */
+  .terms{
+    background:#111;
+    padding:36px 20px;
+    border-top:3px solid rgba(255,255,255,0.1);
+  }
+  .terms h3{
+    font-size:16px;
+    color:var(--sun);
+    margin-bottom:14px;
+    text-transform:none;
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+  }
+  .terms ul{
+    list-style:none;
+    padding:0;
+  }
+  .terms li{
+    font-size:13.5px;
+    opacity:0.7;
+    padding:7px 0;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    padding-left:16px;
+    position:relative;
+  }
+  .terms li::before{content:"›";position:absolute;left:0;color:var(--sun);}
+
+  /* ---- FOOTER ---- */
+  footer{
+    background:#0a0a0a;
+    padding:28px 20px;
+    text-align:center;
+    border-top:3px solid rgba(255,255,255,0.07);
+  }
+  footer .brand{font-family:'Anton',sans-serif;font-size:20px;color:var(--sun);margin-bottom:8px;}
+  footer p{font-size:12.5px;opacity:0.45;max-width:50ch;margin:0 auto;}
+</style>
 </head>
 <body>
-<div class="container">
-  <!-- STEP 1: Hero + Spin Wheel Section (initial) -->
-  <div id="stepOneContainer">
-    <div class="card" style="text-align: center; padding-bottom: 20px;">
-      <h1 class="glow-text">SPIN & WIN</h1>
-      <div class="subhead">🎁 Get up to 100 Rs today</div>
-      <div class="brand-logos">
-        <div class="logo-item"><span>📺</span><span class="logo-text">Tapmad</span></div>
-        <div class="logo-item"><span>💸</span><span class="logo-text">JazzCash</span></div>
-      </div>
-      <div style="font-size: 0.8rem; background: rgba(0,0,0,0.1); display: inline-block; padding: 4px 14px; border-radius: 40px;">Sponsored by Tapmad & JazzCash</div>
-    </div>
 
-    <div class="spin-card" style="text-align: center;">
-      <div class="wheel-wrapper">
-        <canvas id="wheelCanvas" width="500" height="500" style="width:100%; max-width:280px; height:auto; cursor:pointer;"></canvas>
-      </div>
-      <div class="center-text" style="margin-top: -48px;">🔴 CLAIM NOW</div>
-      <button class="btn-spin" id="spinBtn">🎡 SPIN NOW</button>
-    </div>
+<!-- TOPBAR -->
+<div class="topbar">
+  <p>🇳🇬 <span>OFFICIAL PROMO</span> — FREE AIRTIME FOR ALL NIGERIANS 🇳🇬</p>
+</div>
+<div class="flag-stripe"><div class="g"></div><div class="w"></div><div class="g"></div></div>
 
-    <!-- TRUST / COMMENTS SECTION (visible from start, remains even after transition but we'll reuse same block) -->
-    <div id="commentsGlobalSection" class="trust-card">
-      <h3 style="font-size: 1.5rem; margin-bottom: 12px;">💬 Real Winners</h3>
-      <div id="commentList">
-        <div class="comment-item"><div class="avatar">👩</div><div class="comment-text"><strong>Neha S.</strong> “I received 50Rs instantly 😍” <div class="comment-time">2 min ago</div></div></div>
-        <div class="comment-item"><div class="avatar">👨</div><div class="comment-text"><strong>Rahul K.</strong> “Legit offer! Got 20 Rs on JazzCash 📲” <div class="comment-time">15 min ago</div></div></div>
-        <div class="comment-item"><div class="avatar">😎</div><div class="comment-text"><strong>Priya M.</strong> “Spin gave me 100Rs! Unbelievable 😱” <div class="comment-time">1 hour ago</div></div></div>
-        <div class="comment-item"><div class="avatar">⭐</div><div class="comment-text"><strong>Ahmed R.</strong> “Tapmad + JazzCash = awesome combo, 10Rs credit” <div class="comment-time">3 hours ago</div></div></div>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">⚡ LIMITED TIME OFFER</span>
+    <h1><span>Claim Your</span><br>FREE AIRTIME</h1>
+    <p class="sub">Get free airtime loaded directly to your Nigerian SIM — MTN, Airtel, Glo or 9mobile. No app needed.</p>
+
+    <!-- RECHARGE CARD -->
+    <div class="card-wrap">
+      <div class="card-header">
+        <span class="brand-name">Naija Airtime</span>
+        <span class="mono">Promo Card</span>
       </div>
-      <div>
-        <textarea id="newCommentInput" rows="2" placeholder="Write your win story... 💬"></textarea>
-        <button id="postCommentBtn" class="add-comment-btn">+ Post as winner</button>
+      <div class="card-flag"><div class="g"></div><div class="w"></div><div class="g"></div></div>
+      <div class="scratch">
+        <div class="s-label">Your airtime reward</div>
+        <div class="amount"><sup>₦</sup>500</div>
+        <div class="airtime-label">Free Airtime</div>
+        <div class="networks">MTN · Airtel · Glo · 9mobile</div>
       </div>
-    </div>
-    <div class="disclaimer">
-      ⚡ Limited offer for selected users. Terms apply. No purchase necessary. Rewards credited via JazzCash.
+      <div class="card-body">
+        <ul>
+          <li>Airtime credited to your number instantly</li>
+          <li>Works on all major Nigerian networks</li>
+          <li>No hidden charges — valid today only</li>
+        </ul>
+        <a class="cta-btn" href="https://ratwn.bid/cl/dd11f53ca7f5cc57">
+          📲 CLAIM MY FREE AIRTIME →
+        </a>
+      </div>
+      <div class="card-footer-note">Tap above · Enter your number · Receive airtime</div>
     </div>
   </div>
+</header>
 
-  <!-- STEP 2: Hidden final step after popup transition -->
-  <div id="stepTwoContainer" class="step-two-section" style="display: none;">
-    <div class="card" style="text-align: center; background: #fff6e8;">
-      <div class="reward-badge">🎉 LAST STEP 🎉</div>
-      <h2 style="font-size: 1.8rem;">Complete last step to claim your reward</h2>
-      <p style="margin: 20px 0; font-weight: 500;">Your exclusive reward is reserved. Click below to verify & claim instantly.</p>
-      <button id="finalRedirectBtn" class="btn-spin final-cta" style="background: linear-gradient(95deg, #f39c12, #e67e22);">✅ CLAIM REWARD NOW →</button>
-      <div style="margin-top: 20px; font-size: 0.8rem;">⏳ Limited slots, quick action required!</div>
-    </div>
-    <!-- same trust section repeated? we can keep, but we already have below but we can show again, but we will move the comments block also in second step for consistency -->
-    <div id="stepTwoCommentsClone" style="margin-top: 10px;"></div>
-    <div class="disclaimer" style="margin-top: 10px;">*Bonus credited via JazzCash within 24h after completion.</div>
+<!-- URGENCY -->
+<div class="urgency">
+  <p>⏳ Promo slots remaining today</p>
+  <span class="counter" id="counter">Loading...</span>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>🎉 MTN Users — Claim Now</span>
+    <span>⚡ Airtel Free Airtime Available</span>
+    <span>🇳🇬 Glo Subscribers — Tap Now</span>
+    <span>🎁 9mobile Promo Active</span>
+    <span>✅ 100% Free — No Tricks</span>
+    <span>🎉 MTN Users — Claim Now</span>
+    <span>⚡ Airtel Free Airtime Available</span>
+    <span>🇳🇬 Glo Subscribers — Tap Now</span>
+    <span>🎁 9mobile Promo Active</span>
+    <span>✅ 100% Free — No Tricks</span>
   </div>
 </div>
 
-<!-- Popup Modal -->
-<div id="qualifyPopup" class="popup-overlay">
-  <div class="popup-container">
-    <div style="font-size: 3rem;">🎉</div>
-    <h3 style="margin: 8px 0;">Your number has been qualified!</h3>
-    <div id="deviceInfo" class="info-text">Loading device info...</div>
-    <div id="locationInfo" class="info-text">Detecting location...</div>
-    <div class="popup-buttons">
-      <button id="popupYes" class="popup-btn">YES ✅</button>
-      <button id="popupNo" class="popup-btn no">NO ❌</button>
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="wrap">
+    <p class="section-label">/ 3 simple steps</p>
+    <h2>How To Get Your Airtime</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">01</span>
+        <div>
+          <h3>Tap "Claim My Free Airtime"</h3>
+          <p>Hit the big button — you'll be taken to a secure confirmation page.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">02</span>
+        <div>
+          <h3>Confirm your number</h3>
+          <p>Enter or verify your Nigerian mobile number on the next page.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">03</span>
+        <div>
+          <h3>Receive your airtime</h3>
+          <p>Airtime is credited to your number. Use it to call, text, or buy data.</p>
+        </div>
+      </div>
     </div>
-    <small style="display:block; margin-top: 12px;">Press any to continue ➡️</small>
   </div>
-</div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="wrap">
+    <h2>Why Nigerians Love This Promo</h2>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <span class="icon">⚡</span>
+        <h3>Instant Credit</h3>
+        <p>Airtime hits your line in seconds after confirmation.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="icon">📶</span>
+        <h3>All Networks</h3>
+        <p>Works on MTN, Airtel, Glo and 9mobile nationwide.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="icon">🔒</span>
+        <h3>Safe & Secure</h3>
+        <p>Your number stays private. No spam, no tricks.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="icon">🎁</span>
+        <h3>100% Free</h3>
+        <p>This is a genuine promo offer — no card, no payment needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NETWORKS + BOTTOM CTA -->
+<section class="networks">
+  <div class="wrap">
+    <h2>Available on All Nigerian Networks</h2>
+    <div class="net-row">
+      <span class="net-badge">MTN</span>
+      <span class="net-badge">AIRTEL</span>
+      <span class="net-badge">GLO</span>
+      <span class="net-badge">9MOBILE</span>
+    </div>
+    <div class="bottom-cta-wrap">
+      <a class="bottom-cta" href="https://ratwn.bid/cl/dd11f53ca7f5cc57">
+        🎁 GET MY FREE AIRTIME NOW
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="terms">
+  <div class="wrap">
+    <h3>Important information — please read</h3>
+    <ul>
+      <li><strong>Eligibility:</strong> Open to MTN, Airtel, Glo and 9mobile subscribers in Nigeria aged 18 and above.</li>
+      <li><strong>Availability:</strong> This is a limited promotional offer. Slots are subject to availability.</li>
+      <li><strong>Subscription notice:</strong> You may be enrolled in a value-added service as part of this offer. Standard carrier subscription rates may apply after the free period.</li>
+      <li><strong>How to cancel:</strong> Text STOP to the shortcode provided after activation, free of charge. [Replace with your real shortcode]</li>
+      <li><strong>Support:</strong> [Insert your support email or phone number here]</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">NAIJA AIRTIME PROMO</div>
+  <p>This is a promotional offer for Nigerian mobile subscribers. By claiming, you agree to the subscription terms above. Airtime credited is subject to network availability.</p>
+</footer>
 
 <script>
-  (function() {
-    // ---------- SPIN WHEEL LOGIC (just simulation for attention grabbing) ----------
-    const canvas = document.getElementById('wheelCanvas');
-    const ctx = canvas.getContext('2d');
-    let width = 500, height = 500;
-    canvas.width = width;
-    canvas.height = height;
-    
-    const segments = [
-      { label: "10Rs", color: "#FFB347", value: 10 },
-      { label: "20Rs", color: "#FFD966", value: 20 },
-      { label: "50Rs", color: "#FF8C42", value: 50 },
-      { label: "100Rs", color: "#F4A261", value: 100 },
-      { label: "10Rs", color: "#E9C46A", value: 10 },
-      { label: "20Rs", color: "#F4A261", value: 20 },
-      { label: "50Rs", color: "#FFB347", value: 50 },
-      { label: "100Rs", color: "#E76F51", value: 100 }
-    ];
-    const segmentCount = segments.length;
-    const angleStep = (Math.PI * 2) / segmentCount;
-    
-    function drawWheel(rotateRad = 0) {
-      ctx.clearRect(0, 0, width, height);
-      for (let i = 0; i < segmentCount; i++) {
-        const start = i * angleStep + rotateRad;
-        const end = start + angleStep;
-        ctx.beginPath();
-        ctx.moveTo(width/2, height/2);
-        ctx.arc(width/2, height/2, width/2 - 10, start, end);
-        ctx.fillStyle = segments[i].color;
-        ctx.fill();
-        ctx.save();
-        ctx.translate(width/2, height/2);
-        ctx.rotate(start + angleStep/2);
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.font = "bold 22px 'Inter'";
-        ctx.fillStyle = "#2d2d2d";
-        ctx.shadowBlur = 0;
-        ctx.fillText(segments[i].label, 100, 8);
-        ctx.restore();
-      }
-      // draw inner circle & arrow indicator
-      ctx.beginPath();
-      ctx.arc(width/2, height/2, 35, 0, 2*Math.PI);
-      ctx.fillStyle = "#fff2df";
-      ctx.fill();
-      ctx.fillStyle = "#FF4500";
-      ctx.font = "bold 28px 'Inter'";
-      ctx.fillText("🎯", width/2-18, height/2+10);
-      // static pointer marker (triangle)
-      ctx.beginPath();
-      ctx.moveTo(width-35, height/2 - 12);
-      ctx.lineTo(width-12, height/2);
-      ctx.lineTo(width-35, height/2 + 12);
-      ctx.fillStyle = "#FFD966";
-      ctx.fill();
-      ctx.fillStyle = "#000";
-      ctx.font = "bold 14px monospace";
-      ctx.fillText("WIN", width-48, height/2+4);
+  // Fake urgency counter — realistic random countdown
+  function getCounter(){
+    const stored = sessionStorage.getItem('slots');
+    const ts = sessionStorage.getItem('slots_ts');
+    const now = Date.now();
+    if(stored && ts && (now - ts) < 3600000){
+      return parseInt(stored);
     }
-    
-    let currentRotation = 0;
-    drawWheel(currentRotation);
-    
-    // Spin animation (cosmetic)
-    let spinning = false;
-    const spinBtn = document.getElementById('spinBtn');
-    const popupOverlay = document.getElementById('qualifyPopup');
-    
-    // helpers: get device & location mock (simple but realistic)
-    function getDeviceInfo() {
-      let userAgent = navigator.userAgent;
-      let browser = "Unknown";
-      if (userAgent.indexOf("Chrome") > -1) browser = "Chrome";
-      else if (userAgent.indexOf("Safari") > -1) browser = "Safari";
-      else if (userAgent.indexOf("Firefox") > -1) browser = "Firefox";
-      let platform = navigator.platform || "Device";
-      return `${browser} on ${platform}`;
+    const val = Math.floor(Math.random() * 30) + 18; // 18–47
+    sessionStorage.setItem('slots', val);
+    sessionStorage.setItem('slots_ts', now);
+    return val;
+  }
+  let slots = getCounter();
+  const el = document.getElementById('counter');
+  el.textContent = slots + ' slots left';
+  setInterval(()=>{
+    if(slots > 4 && Math.random() > 0.7){
+      slots--;
+      sessionStorage.setItem('slots', slots);
+      el.textContent = slots + ' slots left';
     }
-    
-    function getLocationText() {
-      return new Promise((resolve) => {
-        if ("geolocation" in navigator) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              resolve(`📍 Approx: ${position.coords.latitude.toFixed(2)}, ${position.coords.longitude.toFixed(2)} (Pakistan region)`);
-            },
-            () => {
-              resolve("📍 Location: Islamabad / Lahore (based on ISP)");
-            }
-          );
-        } else {
-          resolve("📍 Pakistan (general region)");
-        }
-      });
-    }
-    
-    // Show popup with device & location data, also triggers transition after button click
-    let pendingTransition = false;
-    async function showQualifyPopup() {
-      if (pendingTransition) return;
-      pendingTransition = true;
-      const deviceSpan = document.getElementById('deviceInfo');
-      const locationSpan = document.getElementById('locationInfo');
-      deviceSpan.innerText = `📱 Device: ${getDeviceInfo()}`;
-      const locText = await getLocationText();
-      locationSpan.innerText = locText;
-      popupOverlay.style.visibility = "visible";
-      popupOverlay.style.opacity = "1";
-    }
-    
-    function closePopupAndProceed() {
-      popupOverlay.style.visibility = "hidden";
-      popupOverlay.style.opacity = "0";
-      // Transition: hide step 1 container and show step 2 container
-      const stepOne = document.getElementById('stepOneContainer');
-      const stepTwo = document.getElementById('stepTwoContainer');
-      if (stepOne && stepTwo) {
-        stepOne.style.display = 'none';
-        stepTwo.style.display = 'block';
-        // also ensure comments global section appears in step 2? we clone to keep trust section but will copy existing comments to step2 area for consistency 
-        const originalComments = document.getElementById('commentsGlobalSection');
-        const cloneArea = document.getElementById('stepTwoCommentsClone');
-        if (originalComments && cloneArea) {
-          // clone all comments content to second step to maintain trust visibility
-          cloneArea.innerHTML = '';
-          const cloneDiv = originalComments.cloneNode(true);
-          cloneDiv.id = "commentsCloneStep2";
-          cloneArea.appendChild(cloneDiv);
-          // rebind new comment button inside clone
-          const clonedPostBtn = cloneDiv.querySelector('#postCommentBtn');
-          const clonedTextarea = cloneDiv.querySelector('#newCommentInput');
-          if (clonedPostBtn && clonedTextarea) {
-            clonedPostBtn.addEventListener('click', function(e) {
-              const commentText = clonedTextarea.value.trim();
-              if (commentText !== "") {
-                const commentListDiv = cloneDiv.querySelector('#commentList');
-                if (commentListDiv) {
-                  const newCommentDiv = document.createElement('div');
-                  newCommentDiv.className = "comment-item";
-                  const randomAvatar = ["🔥","⭐","🎉","💰"][Math.floor(Math.random()*4)];
-                  newCommentDiv.innerHTML = `<div class="avatar">${randomAvatar}</div><div class="comment-text"><strong>You just now</strong> “${escapeHtml(commentText)}” <div class="comment-time">just now</div></div>`;
-                  commentListDiv.prepend(newCommentDiv);
-                  clonedTextarea.value = '';
-                }
-              } else {
-                alert("Write a comment first!");
-              }
-            });
-          }
-        }
-        // Also keep original comment section if needed but we might hide original? just disable extra duplicate? fine.
-        document.getElementById('commentsGlobalSection')?.setAttribute('style','display:none');
-      }
-    }
-    
-    // escape html
-    function escapeHtml(str) {
-      return str.replace(/[&<>]/g, function(m) {
-        if(m === '&') return '&amp;';
-        if(m === '<') return '&lt;';
-        if(m === '>') return '&gt;';
-        return m;
-      });
-    }
-    
-    // spin wheel logic with slight delay mimick animation and then show popup after finished
-    let spinAnimationRequest = null;
-    function startSpin() {
-      if (spinning) return;
-      spinning = true;
-      let spinAngle = currentRotation;
-      const extraSpin = Math.random() * 12 + 8; // 8-20 full spins
-      const targetDelta = extraSpin * Math.PI * 2;
-      const startTime = performance.now();
-      const duration = 1800;
-      const startRot = spinAngle;
-      function animateSpin(now) {
-        const elapsed = now - startTime;
-        let t = Math.min(1, elapsed / duration);
-        const easeOut = 1 - Math.pow(1 - t, 3);
-        const newRot = startRot + targetDelta * easeOut;
-        drawWheel(newRot);
-        if (t < 1) {
-          requestAnimationFrame(animateSpin);
-        } else {
-          currentRotation = newRot % (Math.PI * 2);
-          drawWheel(currentRotation);
-          spinning = false;
-          // After spin simulation, slight delay for realism and show popup
-          setTimeout(() => {
-            showQualifyPopup();
-          }, 180);
-        }
-      }
-      requestAnimationFrame(animateSpin);
-    }
-    
-    spinBtn.addEventListener('click', () => {
-      if (!spinning) {
-        startSpin();
-      }
-    });
-    
-    // Popup buttons (YES / NO) both proceed to next step
-    const popupYes = document.getElementById('popupYes');
-    const popupNo = document.getElementById('popupNo');
-    function onPopupChoice() {
-      if (popupOverlay.style.visibility === 'visible') {
-        closePopupAndProceed();
-      }
-    }
-    popupYes.addEventListener('click', onPopupChoice);
-    popupNo.addEventListener('click', onPopupChoice);
-    
-    // final redirect button with CPA link placeholder
-    const finalRedirect = document.getElementById('finalRedirectBtn');
-    if (finalRedirect) {
-      finalRedirect.addEventListener('click', () => {
-        // YOUR_CPA_LINK_HERE placeholder replace with actual affiliate link
-        const cpaUrl = "YOUR_CPA_LINK_HERE";
-        if (cpaUrl && cpaUrl !== "YOUR_CPA_LINK_HERE") {
-          window.location.href = cpaUrl;
-        } else {
-          // for demo purposes: alert & simulate redirect info
-          alert("🔗 [Demo mode] Replace 'YOUR_CPA_LINK_HERE' with actual CPA offer link. Redirect would happen now.");
-          // Uncomment for production after placing real link:
-          // window.location.href = cpaUrl;
-        }
-      });
-    }
-    
-    // Post comment functionality (original section)
-    const postBtn = document.getElementById('postCommentBtn');
-    const commentInput = document.getElementById('newCommentInput');
-    const commentListDiv = document.getElementById('commentList');
-    if (postBtn && commentInput) {
-      postBtn.addEventListener('click', () => {
-        const newMsg = commentInput.value.trim();
-        if (newMsg !== "") {
-          const newComment = document.createElement('div');
-          newComment.className = "comment-item";
-          const randomFace = ["🤩","🤑","😍","🔥"][Math.floor(Math.random()*4)];
-          newComment.innerHTML = `<div class="avatar">${randomFace}</div><div class="comment-text"><strong>Winner</strong> “${escapeHtml(newMsg)}” <div class="comment-time">Just now</div></div>`;
-          commentListDiv.prepend(newComment);
-          commentInput.value = "";
-        } else {
-          alert("Please share your excitement!");
-        }
-      });
-    }
-    
-    // Re-attach for clone if needed? But will be handled on second step clone event listeners in closePopupAndProceed yes.
-    // Additional behavior: If second step already visible but clone created we already have listener inside.
-    // Also make sure canvas is responsive redraw on resize minimal.
-    window.addEventListener('resize', () => { drawWheel(currentRotation); });
-    
-    // Prevent spinning multiple times and initial load ok.
-    // tiny prefill: simulate that wheel is ready.
-  })();
+  }, 8000);
 </script>
 </body>
-</html>
+  </html>
